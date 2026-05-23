@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dompetku - Pencatat Keuangan</title>
+    <!-- Menghubungkan ke file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dompetku</h1>
+
+        <!-- Papan Skor Saldo -->
+        <!-- Papan Skor Saldo Utama -->
+<div class="balance-board">
+    <p>Total Saldo Anda</p>
+    <h3 id="total-balance">Rp 0</h3>
+</div>
+
+<!-- Tambahan Baru: Dashboard Rekap Berdasarkan Waktu -->
+<div class="summary-dashboard">
+    <div class="summary-row header-row">
+        <div>Periode</div>
+        <div class="text-success">Pemasukan</div>
+        <div class="text-danger">Pengeluaran</div>
+    </div>
+    <div class="summary-row">
+        <div>Hari Ini</div>
+        <div id="day-income" class="text-success">Rp 0</div>
+        <div id="day-expense" class="text-danger">Rp 0</div>
+    </div>
+    <div class="summary-row">
+        <div>Minggu Ini</div>
+        <div id="week-income" class="text-success">Rp 0</div>
+        <div id="week-expense" class="text-danger">Rp 0</div>
+    </div>
+    <div class="summary-row">
+        <div>Bulan Ini</div>
+        <div id="month-income" class="text-success">Rp 0</div>
+        <div id="month-expense" class="text-danger">Rp 0</div>
+    </div>
+    <div class="summary-row">
+        <div>Tahun Ini</div>
+        <div id="year-income" class="text-success">Rp 0</div>
+        <div id="year-expense" class="text-danger">Rp 0</div>
+    </div>
+</div>
+
+        <!-- Form Tambah Transaksi -->
+<form id="finance-form">
+    <div class="form-group">
+        <label for="description">Nama Transaksi</label>
+        <input type="text" id="description" placeholder="Contoh: Gaji, Beli Kopi" required>
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Jumlah (Rp)</label>
+        <input type="number" id="amount" placeholder="Masukkan angka saja" required>
+    </div>
+
+    <!-- Tambahan Baru: Input Tanggal Kustom -->
+    <div class="form-group">
+        <label for="transaction-date">Tanggal Transaksi</label>
+        <input type="date" id="transaction-date" required>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Kategori</label>
+        <select id="category">
+            <option value="Umum">Umum / Lainnya</option>
+            <option value="Makanan">Makanan & Minuman</option>
+            <option value="Transportasi">Transportasi</option>
+            <option value="Hiburan">Hiburan & Gaya Hidup</option>
+            <option value="Investasi">Investasi / Tabungan</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="type">Jenis Transaksi</label>
+        <select id="type">
+            <option value="income">Pemasukan (+)</option>
+            <option value="expense">Pengeluaran (-)</option>
+        </select>
+    </div>
+
+    <button type="submit" class="submit-btn">Tambah Transaksi</button>
+</form>
+
+        <!-- Riwayat Transaksi -->
+        <div class="history-section">
+            <h2>Riwayat Transaksi</h2>
+            
+            <!-- Deretan Tombol Filter Kategori -->
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterTransactions('Semua', this)">Semua</button>
+                <button class="filter-btn" onclick="filterTransactions('Umum', this)">Umum</button>
+                <button class="filter-btn" onclick="filterTransactions('Makanan', this)">Makanan</button>
+                <button class="filter-btn" onclick="filterTransactions('Transportasi', this)">Transportasi</button>
+                <button class="filter-btn" onclick="filterTransactions('Hiburan', this)">Hiburan</button>
+                <button class="filter-btn" onclick="filterTransactions('Investasi', this)">Investasi</button>
+            </div>
+
+            <!-- Tombol Cetak CSV -->
+            <button id="download-csv-btn" class="download-btn">
+                📥 Download Laporan (CSV)
+            </button>
+
+            <ul id="transaction-list" class="transaction-list">
+                <!-- Data dari script.js akan muncul di sini -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Menghubungkan ke file JavaScript eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
